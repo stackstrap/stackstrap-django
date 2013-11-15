@@ -3,7 +3,7 @@ stackstrap:
   template_name: "Django"
   template_description:
     This is the StackStrap Django template which is based off of the
-    book "Two Scoops of Django" by Daniel Greenfeld and Audrey Roy.
+    book 'Two Scoops of Django' by Daniel Greenfeld and Audrey Roy.
 
   # define which files should have our context applied as templates
   file_templates:
