@@ -16,7 +16,7 @@ include:
 {{ skeleton("django", 6000, 6000) }}
 {{ mysql_user_db("django", "django") }}
 {{ nginxsite("django", "django", "django",
-             template="php-djagno.conf",
+             template="proxy-django.conf",
              server_name="_",
              create_root=False,
              defaults={
