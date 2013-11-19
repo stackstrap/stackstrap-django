@@ -10,7 +10,7 @@ stackstrap:
     - README.rst
 
   path_templates:
-    'django_project_root/configuration_root': 'django_project_root/{{ project.short_name }}'
-    'django_project_root': '{{ project.short_name }}'
+    - 'django_project_root/configuration_root': 'django_project_root/{{ project.short_name }}'
+    - 'django_project_root': '{{ project.short_name }}'
 
 # vim: set ft=yaml ts=2 sw=2 sts=2 et ai :
