@@ -19,7 +19,7 @@ include:
 {% set short_name = pillar['project']['short_name'] -%}
 {% set home = "/home/" + short_name -%}
 {% set virtualenv = home + "/virtualenv" -%}
-{% set appdir = home + "/current/application/" + short_name -%}
+{% set appdir = home + "/current/" + short_name -%}
 
 {{ skeleton(short_name, 6000, 6000) }}
 
