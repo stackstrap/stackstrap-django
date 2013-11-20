@@ -1,0 +1,8 @@
+# vim swap files
+.*.sw*
+
+# python compiled files
+*.pyc
+
+# Vagrant stuff
+.vagrant/
