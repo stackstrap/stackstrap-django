@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 project_dir = lambda *path: os.path.join(BASE_DIR, *path)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '{{ random_secret }}'
+SECRET_KEY = '{% random_secret %}'
 
 DEBUG = False
 TEMPLATE_DEBUG = False
