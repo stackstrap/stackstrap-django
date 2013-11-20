@@ -10,26 +10,33 @@ include:
   - mysql.server
   - virtualenv
 
-{% from "utils/users.sls" import skeleton %}
-{% from "mysql/macros.sls" import mysql_user_db %}
-{% from "nginx/macros.sls" import nginxsite %}
-{% from "supervisor/macros.sls" import supervise %}
+{% from "utils/users.sls" import skeleton -%}
+{% from "mysql/macros.sls" import mysql_user_db -%}
+{% from "nginx/macros.sls" import nginxsite -%}
+{% from "supervisor/macros.sls" import supervise -%}
 
-django_env:
+{% set short_name = pillar['project']['short_name'] -%}
+{% set home = "/home/" + short_name -%}
+{% set virtualenv = home + "/virtualenv" -%}
+{% set appdir = home + "/current/application/" + short_name -%}
+
+{{ skeleton(short_name, 6000, 6000) }}
+
+{{ short_name }}_env:
   virtualenv:
     - managed
-    - name: /home/django/virtualenv
-    - requirements: /home/django/current/application/requirements/{{ config.get('requirements', mode) }}.txt
-    - user: stackstrap
+    - name: {{ virtualenv }}
+    - requirements: {{ home }}/current/requirements/dev.txt
+    - user: {{ short_name }}
     - no_chown: True
     - system_site_packages: True
     - require:
-      - user: stackstrap
+      - user: {{ short_name }}
       - pkg: virtualenv_pkgs
 
-{{ skeleton("django", 6000, 6000) }}
-{{ mysql_user_db("django", "django") }}
-{{ nginxsite("django", "django", "django",
+{{ mysql_user_db(short_name, short_name) }}
+
+{{ nginxsite(short_name, short_name, short_name,
              template="proxy-django.conf",
              server_name="_",
              create_root=False,
@@ -37,9 +44,11 @@ django_env:
               'port': 8000
              })
 }}
-{{ supervise("django", "/home/django" ,6000, 6000,{
+{{ supervise(short_name, home, 6000, 6000, {
         "django": {
-            "program": 
+            "command": "/bin/sh -c '" + virtualenv + "/bin/django-admin.py runserver 0:8000 2>&1'",
+            "directory": appdir,
+            "environment": "DJANGO_SETTINGS_MODULE=" + short_name + ".settings.dev"
         }
     }) 
 }}

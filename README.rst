@@ -1,7 +1,7 @@
-==========================
-StackStrap Django Template
-==========================
+{{ project.name }}
+{{ "=" * len(project.name) }}
 
-This template is based off of the best practices outlined in the book `"Two Scoops of Django"`_.
+This project is based off of the best practices outlined in the book `"Two
+Scoops of Django"`_.
 
 .. _"Two Scoops of Django": https://django.2scoops.org/
