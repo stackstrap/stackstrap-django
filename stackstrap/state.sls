@@ -42,14 +42,16 @@ include:
              server_name="_",
              create_root=False,
              defaults={
-              'port': 8000
+              'port': 8000,
+              'handle_static': False,
+              'media_path': appdir + "/media"
              })
 }}
 {{ supervise(short_name, home, short_name, short_name, {
         "django": {
             "command": "/bin/sh -c '" + virtualenv + "/bin/django-admin.py runserver 0:8000 2>&1'",
             "directory": appdir,
-            "environment": "DJANGO_SETTINGS_MODULE=" + short_name + ".settings.dev"
+            "environment": "PYTHONPATH=\"" + appdir + "\",DJANGO_SETTINGS_MODULE=\"" + short_name + ".settings.dev\""
         }
     }) 
 }}
