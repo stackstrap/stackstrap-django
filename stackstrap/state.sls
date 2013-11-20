@@ -31,7 +31,7 @@ include:
     - no_chown: True
     - system_site_packages: True
     - require:
-      - user: {{ short_name }}
+      - file: /home/{{ short_name }}
       - pkg: virtualenv_pkgs
 
 {{ mysql_user_db(short_name, short_name) }}
@@ -44,7 +44,7 @@ include:
               'port': 8000
              })
 }}
-{{ supervise(short_name, home, 6000, 6000, {
+{{ supervise(short_name, home, short_name, short_name, {
         "django": {
             "command": "/bin/sh -c '" + virtualenv + "/bin/django-admin.py runserver 0:8000 2>&1'",
             "directory": appdir,
