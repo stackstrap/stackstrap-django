@@ -7,6 +7,9 @@ template_description:
 # define which files should have our context applied as templates
 file_templates:
   - README.rst
+  - django_project_root/configuration_root/wsgi.py
+  - django_project_root/configuration_root/settings/base.py
+  - django_project_root/configuration_root/settings/dev.py
 
 path_templates:
   - 'django_project_root/configuration_root': 'django_project_root/{{ project.short_name }}'
