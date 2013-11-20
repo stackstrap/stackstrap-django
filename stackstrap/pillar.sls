@@ -1,0 +1,2 @@
+django:
+  mode: dev
