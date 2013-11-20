@@ -9,6 +9,7 @@ include:
   - nginx
   - mysql.server
   - virtualenv
+  - supervisor
 
 {% from "utils/users.sls" import skeleton -%}
 {% from "mysql/macros.sls" import mysql_user_db -%}
