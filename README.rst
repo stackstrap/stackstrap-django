@@ -1,5 +1,5 @@
-{{ project.name }}
-==================
+{{ name }}
+==========
 
 This project is based off of the best practices outlined in the book `"Two
 Scoops of Django"`_.

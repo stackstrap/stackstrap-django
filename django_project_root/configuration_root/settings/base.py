@@ -1,5 +1,5 @@
 """
-Django settings for {{ project.short_name }} project.
+Django settings for {{ name }} project.
 
 Settings configured in this file will affect all of your different environment
 (ie. production, dev, etc). If you want to target a specific environment make
@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.6/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
-{% load secrets %}
 
 # Build paths inside the project like this: project_dir("subfolder", ...)
 import os
@@ -19,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 project_dir = lambda *path: os.path.join(BASE_DIR, *path)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '{% random_secret %}'
+SECRET_KEY = '{{ random_secret() }}'
 
 DEBUG = False
 TEMPLATE_DEBUG = False
@@ -47,8 +46,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = '{{ project.short_name }}.urls'
-WSGI_APPLICATION = '{{ project.short_name }}.wsgi.application'
+ROOT_URLCONF = '{{ name }}.urls'
+WSGI_APPLICATION = '{{ name }}.wsgi.application'
 
 
 # Database - Configure this in your environment settings file

@@ -1,5 +1,5 @@
 """
-WSGI config for {{ project.short_name }} project.
+WSGI config for {{ name }} project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
