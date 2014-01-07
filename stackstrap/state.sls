@@ -17,7 +17,7 @@ include:
 {% from "supervisor/macros.sls" import supervise -%}
 
 {% set short_name = pillar['project']['short_name'] -%}
-{% set home = "/project" -%}
+{% set home = "/home/" + short_name -%}
 {% set virtualenv = home + "/virtualenv" -%}
 {% set appdir = home + "/current/" + short_name -%}
 
