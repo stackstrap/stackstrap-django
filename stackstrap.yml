@@ -6,6 +6,7 @@ template_description:
 
 # define which files should have our context applied as templates
 file_templates:
+  - Vagrantfile
   - README.rst
   - django_project_root/configuration_root/wsgi.py
   - django_project_root/configuration_root/settings/base.py
