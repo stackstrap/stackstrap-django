@@ -39,7 +39,7 @@ include:
 
 {{ mysql_user_db(short_name, short_name) }}
 
-{{ nginxsite(short_name, short_name, short_name,
+{{ nginxsite(short_name, app_user, app_group,
              template="proxy-django.conf",
              server_name="_",
              create_root=False,
@@ -49,7 +49,7 @@ include:
               'media_path': appdir + "/media"
              })
 }}
-{{ supervise(short_name, home, short_name, short_name, {
+{{ supervise(short_name, home, app_user, app_group, {
         "django": {
             "command": "/bin/sh -c '" + virtualenv + "/bin/django-admin.py runserver 0:8000 2>&1'",
             "directory": appdir,
