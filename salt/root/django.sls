@@ -19,15 +19,18 @@ include:
 {% set short_name = pillar['project']['short_name'] -%}
 {% set home = "/home/vagrant" -%}
 {% set virtualenv = home + "/virtualenv" -%}
-{% set appdir = home + "/project" -%}
+{% set project = home + "/domains/" + short_name -%}
+{% set appdir = home + "/domains/" + short_name + "/" + short_name -%}
+{% set app_user = "vagrant" -%}
+{% set app_group = "vagrant" -%}
 
-{{ skeleton(short_name, 6000, 6000) }}
+{{ skeleton(app_user, 1000, 1000, remove_groups=False) }}
 
 {{ short_name }}_env:
   virtualenv:
     - managed
     - name: {{ virtualenv }}
-    - requirements: {{ appdir }}/requirements/dev.txt
+    - requirements: {{ project }}/requirements/dev.txt
     - user: vagrant
     - no_chown: True
     - system_site_packages: True
