@@ -17,6 +17,7 @@ file_templates:
   - django_project_root/configuration_root/wsgi.py
   - django_project_root/configuration_root/settings/base.py
   - django_project_root/configuration_root/settings/dev.py
+  - salt/pillar/stackstrap.sls
 
 path_templates:
   - PROJECT-README: README
