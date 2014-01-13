@@ -27,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.ssh.forward_agent = true
 
-  config.vm.synced_folder ".", "/project"
+  config.vm.synced_folder ".", "/home/vagrant/project"
 
   # provision our box with salt but do not run the highstate yet
   # we still need to setup our stackstrap repository after salt is installed

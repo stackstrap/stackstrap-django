@@ -17,9 +17,9 @@ include:
 {% from "supervisor/macros.sls" import supervise -%}
 
 {% set short_name = pillar['project']['short_name'] -%}
-{% set home = "/home/" + short_name -%}
+{% set home = "/home/vagrant" -%}
 {% set virtualenv = home + "/virtualenv" -%}
-{% set appdir = home + "/current/" + short_name -%}
+{% set appdir = home + "/project" -%}
 
 {{ skeleton(short_name, 6000, 6000) }}
 
@@ -27,12 +27,11 @@ include:
   virtualenv:
     - managed
     - name: {{ virtualenv }}
-    - requirements: {{ home }}/current/requirements/dev.txt
-    - user: {{ short_name }}
+    - requirements: {{ appdir }}/requirements/dev.txt
+    - user: vagrant
     - no_chown: True
     - system_site_packages: True
     - require:
-      - file: /home/{{ short_name }}
       - pkg: virtualenv_pkgs
 
 {{ mysql_user_db(short_name, short_name) }}
