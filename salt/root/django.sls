@@ -17,27 +17,29 @@ include:
 {% from "supervisor/macros.sls" import supervise -%}
 
 {% set short_name = pillar['project']['short_name'] -%}
-{% set home = "/home/" + short_name -%}
+{% set home = "/home/vagrant" -%}
 {% set virtualenv = home + "/virtualenv" -%}
-{% set appdir = home + "/current/" + short_name -%}
+{% set project = home + "/domains/" + short_name -%}
+{% set appdir = home + "/domains/" + short_name + "/" + short_name -%}
+{% set app_user = "vagrant" -%}
+{% set app_group = "vagrant" -%}
 
-{{ skeleton(short_name, 6000, 6000) }}
+{{ skeleton(app_user, 1000, 1000, remove_groups=False) }}
 
 {{ short_name }}_env:
   virtualenv:
     - managed
     - name: {{ virtualenv }}
-    - requirements: {{ home }}/current/requirements/dev.txt
-    - user: {{ short_name }}
+    - requirements: {{ project }}/requirements/dev.txt
+    - user: vagrant
     - no_chown: True
     - system_site_packages: True
     - require:
-      - file: /home/{{ short_name }}
       - pkg: virtualenv_pkgs
 
 {{ mysql_user_db(short_name, short_name) }}
 
-{{ nginxsite(short_name, short_name, short_name,
+{{ nginxsite(short_name, app_user, app_group,
              template="proxy-django.conf",
              server_name="_",
              create_root=False,
@@ -47,7 +49,7 @@ include:
               'media_path': appdir + "/media"
              })
 }}
-{{ supervise(short_name, home, short_name, short_name, {
+{{ supervise(short_name, home, app_user, app_group, {
         "django": {
             "command": "/bin/sh -c '" + virtualenv + "/bin/django-admin.py runserver 0:8000 2>&1'",
             "directory": appdir,
