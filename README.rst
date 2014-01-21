@@ -9,4 +9,4 @@ Scoops of Django"`_.
 
 Give it a try::
 
-    stackstrap template add django https://github.com/openops/stackstrap-django.git
+    stackstrap template add django https://github.com/freesurface/stackstrap-django.git
