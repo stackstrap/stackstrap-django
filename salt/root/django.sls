@@ -40,7 +40,7 @@ include:
 {{ mysql_user_db(short_name, short_name) }}
 
 {{ nginxsite(short_name, app_user, app_group,
-             template="proxy-django.conf",
+             template="salt://nginx/files/proxy-django.conf",
              server_name="_",
              create_root=False,
              defaults={

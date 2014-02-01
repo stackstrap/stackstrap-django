@@ -14,14 +14,15 @@ salt-call pkg.install git
 cd /tmp
 git clone https://github.com/freesurface/stackstrap-salt.git stackstrap-salt
 cd stackstrap-salt
-git archive master --prefix=/srv/ | (cd /; tar xf -)
+git checkout v2014.2.1
+git archive v2014.2.1 --prefix=/srv/ | (cd /; tar xf -)
 SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "{{ name }}-#{CURRENT_USER}"
 
-  config.vm.box = "precise32"
-  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  config.vm.box = "ubuntu1204-stackstrap"
+  config.vm.box_url = "http://boxes.stackstrap.org/virtualbox/ubuntu1204-saltlatest.box"
 
   config.vm.network :public_network
 
