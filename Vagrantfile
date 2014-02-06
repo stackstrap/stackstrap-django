@@ -14,8 +14,8 @@ salt-call pkg.install git
 cd /tmp
 git clone https://github.com/freesurface/stackstrap-salt.git stackstrap-salt
 cd stackstrap-salt
-git checkout v2014.2.1
-git archive v2014.2.1 --prefix=/srv/ | (cd /; tar xf -)
+git checkout v2014.2.6
+git archive v2014.2.6 --prefix=/srv/ | (cd /; tar xf -)
 SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
