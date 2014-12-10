@@ -10,4 +10,4 @@ Scoops of Django].
     stackstrap template add django https://github.com/stackstrap/stackstrap-django.git
 ```
 
-[Two Scoops of Django]: https://django.2scoops.org/
+[Two Scoops of Django]: http://twoscoopspress.org/collections/everything/products/two-scoops-of-django-1-5
