@@ -49,13 +49,26 @@ include:
               'media_path': appdir + "/media"
              })
 }}
+
 {{ supervise(short_name, home, app_user, app_group, {
         "django": {
             "command": "/bin/sh -c '" + virtualenv + "/bin/django-admin.py runserver 0:8000 2>&1'",
             "directory": appdir,
             "environment": "PYTHONPATH=\"" + appdir + "\",DJANGO_SETTINGS_MODULE=\"" + short_name + ".settings.dev\""
         }
-    }) 
+    })
 }}
+
+{{ short_name }}_profile_setup:
+  file:
+    - append
+    - name: /home/vagrant/.profile
+    - require:
+      - user: vagrant
+    - text:
+      - export DJANGO_SETTINGS_MODULE={{ short_name }}.settings.dev
+      - export PYTHONPATH={{ appdir }}
+      - source ~/virtualenv/bin/activate
+      - cd /vagrant
 
 # vim: set ft=yaml ts=2 sw=2 sts=2 et ai :
