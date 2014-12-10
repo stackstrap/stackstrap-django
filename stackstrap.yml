@@ -9,7 +9,7 @@ template_description:
   book 'Two Scoops of Django' by Daniel Greenfeld and Audrey Roy.
 
 cleanup:
-  - README.rst
+  - README.md
 
 file_templates:
   - Vagrantfile
@@ -20,7 +20,7 @@ file_templates:
   - salt/pillar/stackstrap.sls
 
 path_templates:
-  - PROJECT-README: README
+  - PROJECT-README: README.md
   - django_project_root/configuration_root: 'django_project_root/{{ name }}'
   - django_project_root: '{{ name }}'
 

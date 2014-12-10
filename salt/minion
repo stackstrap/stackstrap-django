@@ -1,10 +1,21 @@
 state_verbose: False
+
 file_client: local
+
+fileserver_backend:
+  - git
+  - roots
+
+gitfs_provider: gitpython
+
+gitfs_remotes:
+  - https://github.com/stackstrap/stackstrap-salt.git
+
 file_roots:
   base:
     - /vagrant/salt/root
-    - /srv/salt
+    - /var/cache/salt/minion/gitfs/refs/base
+
 pillar_roots:
   base:
     - /vagrant/salt/pillar
-    - /srv/pillar

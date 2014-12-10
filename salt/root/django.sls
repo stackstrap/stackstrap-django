@@ -5,16 +5,16 @@
 #
 
 include:
-  - avahi
-  - nginx
-  - mysql.server
-  - virtualenv
-  - supervisor
+  - stackstrap.avahi
+  - stackstrap.nginx
+  - stackstrap.mysql.server
+  - stackstrap.virtualenv
+  - stackstrap.supervisor
 
-{% from "utils/users.sls" import skeleton -%}
-{% from "mysql/macros.sls" import mysql_user_db -%}
-{% from "nginx/macros.sls" import nginxsite -%}
-{% from "supervisor/macros.sls" import supervise -%}
+{% from "stackstrap/utils/users.sls" import skeleton -%}
+{% from "stackstrap/mysql/macros.sls" import mysql_user_db -%}
+{% from "stackstrap/nginx/macros.sls" import nginxsite -%}
+{% from "stackstrap/supervisor/macros.sls" import supervise -%}
 
 {% set short_name = pillar['project']['short_name'] -%}
 {% set home = "/home/vagrant" -%}
@@ -40,7 +40,7 @@ include:
 {{ mysql_user_db(short_name, short_name) }}
 
 {{ nginxsite(short_name, app_user, app_group,
-             template="salt://nginx/files/proxy-django.conf",
+             template="salt://stackstrap/nginx/files/proxy-django.conf",
              server_name="_",
              create_root=False,
              defaults={

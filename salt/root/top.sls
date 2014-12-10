@@ -1,6 +1,3 @@
-#
-# StackStrap auto-generated state top.sls file
-#
 
 base:
   '*':
