@@ -14,6 +14,7 @@ cleanup:
 file_templates:
   - Vagrantfile
   - PROJECT-README
+  - salt/pillar/project.sls
   - django_project_root/configuration_root/wsgi.py
   - django_project_root/configuration_root/settings/base.py
   - django_project_root/configuration_root/settings/dev.py
@@ -21,6 +22,7 @@ file_templates:
 
 path_templates:
   - PROJECT-README: README.md
+  - salt/pillar/project.sls: 'salt/pillar/{{ name }}.sls'
   - django_project_root/configuration_root: 'django_project_root/{{ name }}'
   - django_project_root: '{{ name }}'
 

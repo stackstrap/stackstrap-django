@@ -1,4 +1,8 @@
 
+django:
+  mode: dev
+  db: mysql
+
 project:
   short_name: {{ name }}
   name: {{ name }}
