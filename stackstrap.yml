@@ -15,6 +15,7 @@ file_templates:
   - Vagrantfile
   - PROJECT-README
   - salt/pillar/project.sls
+  - salt/pillar/top.sls
   - django_project_root/configuration_root/wsgi.py
   - django_project_root/configuration_root/settings/base.py
   - django_project_root/configuration_root/settings/dev.py
